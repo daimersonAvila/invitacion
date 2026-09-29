@@ -2,6 +2,7 @@
    DETALLES.JS - Sección "Detalles del Evento"
    - Mariposas grandes volando
    - Contador de tiempo hasta el 29 Nov 2026 a las 2:00 PM
+   - ✅ Animación: overlay oscuro + contador sube + aparece el texto
    ============================================================ */
 
 // ================================================================
@@ -17,7 +18,7 @@ function hacerMariposasLocas() {
   const mariposas = document.querySelectorAll(".bfly");
 
   mariposas.forEach((mariposa) => {
-    // ✅ Tamaño aleatorio GRANDE: entre 60px y 90px
+    // Tamaño aleatorio GRANDE: entre 60px y 90px
     const tamaño = 60 + Math.random() * 30;
     mariposa.style.width = `${tamaño}px`;
 
@@ -39,10 +40,14 @@ function actualizarContador() {
 
   // Si ya pasó la fecha
   if (distancia < 0) {
-    document.getElementById('cd-dias').textContent = '00';
-    document.getElementById('cd-horas').textContent = '00';
-    document.getElementById('cd-min').textContent = '00';
-    document.getElementById('cd-seg').textContent = '00';
+    const elD = document.getElementById('cd-dias');
+    const elH = document.getElementById('cd-horas');
+    const elM = document.getElementById('cd-min');
+    const elS = document.getElementById('cd-seg');
+    if (elD) elD.textContent = '00';
+    if (elH) elH.textContent = '00';
+    if (elM) elM.textContent = '00';
+    if (elS) elS.textContent = '00';
     return;
   }
 
@@ -70,6 +75,39 @@ window.addEventListener('load', () => {
   // Actualizar cada segundo
   setInterval(actualizarContador, 1000);
 });
+
+// ================================================================
+//  ✅ ANIMACIÓN DE ENTRADA
+//  1. Al entrar, todo se ve oscuro (overlay al 92% de opacidad)
+//  2. Solo se ven los 2 contadores (el central y el del shell)
+//  3. A los 1.5s, el contador del shell SUBE hacia el centro
+//  4. Cuando llega, el overlay desaparece y aparece todo el texto
+// ================================================================
+function iniciarAnimacionEntrada() {
+  const overlay = document.getElementById('introOverlay');
+
+  console.log('🎬 Iniciando animación de entrada a Detalles');
+
+  // A los 1.5s, pedir al shell que suba su contador
+  setTimeout(() => {
+    console.log('⬆️ Pidiendo al shell que suba su contador');
+
+    // Enviar mensaje al shell para que anime su contador
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ tipo: 'sube-contador' }, '*');
+    }
+
+    // A los 1.2s más (cuando el contador ya subió), quitar el overlay
+    setTimeout(() => {
+      console.log('✨ Revelando el contenido de Detalles');
+      if (overlay) overlay.classList.add('oculto');
+    }, 1200);
+
+  }, 1500);
+}
+
+// Iniciar animación cuando el DOM esté listo
+window.addEventListener('load', iniciarAnimacionEntrada);
 
 // ================================================================
 //  INICIALIZAR NAVEGACIÓN
