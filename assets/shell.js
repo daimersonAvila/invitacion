@@ -1,9 +1,9 @@
 // ================================================================
-//  SHELL.JS v3.2 - Música de YouTube + Navegación + Precarga
-//  + Contador centrado abajo (días, horas, min, seg)
+//  SHELL.JS v3.3 - Música + Navegación + Precarga
+//  + Contador centrado abajo (con animación "sube-contador")
 // ================================================================
 
-console.log('🟢 SHELL.JS v3.2 CARGADO');
+console.log('🟢 SHELL.JS v3.3 CARGADO');
 
 const musicBtn = document.getElementById('musicBtn');
 const contentFrame = document.getElementById('contentFrame');
@@ -54,6 +54,27 @@ function iniciarMusica() {
 }
 
 // ================================================================
+//  ✅ RESTAURAR EL CONTADOR (cuando se sale de Detalles)
+// ================================================================
+function restaurarContador() {
+  const contador = document.getElementById('countdown-widget');
+  if (!contador) return;
+
+  // Quitar cualquier estilo inline que lo haya ocultado
+  contador.style.display = '';
+  contador.style.transition = 'none';
+  contador.style.transform = 'translateX(-50%) translateY(0) scale(1)';
+  contador.style.opacity = '1';
+
+  // Reactivar la transición después de un instante
+  setTimeout(() => {
+    contador.style.transition = '';
+  }, 100);
+
+  console.log('♻️ Contador restaurado abajo');
+}
+
+// ================================================================
 //  PRECARGA
 // ================================================================
 function precargarSiguiente(rutaActual) {
@@ -92,6 +113,9 @@ function cambiarPagina(ruta) {
   if (!musicaIniciada) iniciarMusica();
   if (!contentFrame) return;
 
+  // ✅ Restaurar el contador si estaba oculto
+  restaurarContador();
+
   let rutaFinal = ruta;
   try {
     const urlActual = contentFrame.contentWindow.location.href;
@@ -124,14 +148,38 @@ window.cambiarPagina = cambiarPagina;
 window.addEventListener('message', (event) => {
   if (!event.data) return;
 
+  // ✅ Mensaje: iniciar música
   if (event.data.tipo === 'invitacion-musica') {
     console.log('📨 Mensaje: iniciar música');
     iniciarMusica();
   }
 
+  // ✅ Mensaje: navegar
   if (event.data.tipo === 'invitacion-nav' && event.data.url) {
     console.log('📨 Mensaje: navegar a', event.data.url);
     cambiarPagina(event.data.url);
+  }
+
+  // ============================================================
+  //  ✅ Mensaje: "sube-contador"
+  //  Anima el contador hacia arriba y lo oculta permanentemente
+  // ============================================================
+  if (event.data.tipo === 'sube-contador') {
+    console.log('⬆️ Animando contador hacia arriba');
+
+    const contador = document.getElementById('countdown-widget');
+    if (contador) {
+      // Fase 1: Animar subida (1.2s)
+      contador.style.transition = 'all 1.2s cubic-bezier(0.55, 0, 0.55, 1)';
+      contador.style.transform = 'translateX(-50%) translateY(-70vh) scale(0.6)';
+      contador.style.opacity = '0';
+
+      // Fase 2: Ocultar permanentemente al terminar
+      setTimeout(() => {
+        contador.style.display = 'none';
+        console.log('👻 Contador oculto permanentemente');
+      }, 1300);
+    }
   }
 });
 
@@ -235,4 +283,4 @@ function actualizarContador() {
 actualizarContador();
 setInterval(actualizarContador, 1000);
 
-console.log('✅ SHELL.JS v3.2 LISTO');
+console.log('✅ SHELL.JS v3.3 LISTO');
