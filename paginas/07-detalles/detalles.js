@@ -1,4 +1,9 @@
-/* Lógica propia de la página "Detalles del Evento" */
+/* ============================================================
+   DETALLES.JS - Lógica de la sección "Detalles del Evento"
+   Navegación: 05-padre → 07-detalles → 08-confirmacion
+   ============================================================ */
+
+// ===== MARIPOSAS LOCAS =====
 function hacerMariposasLocas() {
   const mariposas = document.querySelectorAll(".bfly");
 
@@ -16,7 +21,7 @@ function hacerMariposasLocas() {
 
     const animaciones = ["vuelo-1", "vuelo-2", "vuelo-3", "vuelo-4"];
     const animacionElegida =
-      animaciones[Math.floor(Math.random() * animaciones.length)];
+        animaciones[Math.floor(Math.random() * animaciones.length)];
     mariposa.style.animationName = animacionElegida;
     mariposa.style.animationIterationCount = "infinite";
     mariposa.style.animationTimingFunction = "ease-in-out";
@@ -24,4 +29,9 @@ function hacerMariposasLocas() {
 }
 window.addEventListener("load", hacerMariposasLocas);
 
-window.InvitacionNav.init("../06-padrinos/padrinos.html", "../08-confirmacion/confirmacion.html");
+// ===== INICIALIZAR NAVEGACIÓN =====
+// Anterior: 05-padre  |  Siguiente: 08-confirmacion
+window.InvitacionNav.init(
+    "../05-padre/padre.html",                 // ✅ CORREGIDO (antes era 06-padrinos)
+    "../08-confirmacion/confirmacion.html"    // ✅ Siguiente correcto
+);

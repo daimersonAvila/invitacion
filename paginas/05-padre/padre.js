@@ -1,8 +1,8 @@
-/* ================================================================
+/* ============================================
    PADRE.JS - Lógica de la sección "Mis Padres"
-   ================================================================ */
+   ============================================ */
 
 window.InvitacionNav.init(
-    "../04-invitacion/invitacion.html",
-    "../06-padrinos/padrinos.html"
+    "../04-invitacion/invitacion.html",   // Anterior
+    "../07-detalles/detalles.html"        // Siguiente: DETALLES (no padrinos)
 );
