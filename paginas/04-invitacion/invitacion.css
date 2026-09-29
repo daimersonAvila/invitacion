@@ -1,9 +1,9 @@
 /* ================================================================
    INVITACION.CSS - Sección de dedicatoria estilo "cuento dorado"
-   - Texto dorado GRANDE con contorno oscuro
-   - Princesa centrada y grande, vestido cubre parte inferior
-   - Flores más grandes en la esquina
-   - Mariposas GRANDES con latido de corazón (sin tapar el texto)
+   - Flores MÁS GRANDES en la esquina
+   - Texto BAJADO para no chocar con las flores
+   - Princesa centrada y grande
+   - Mariposas GRANDES con latido de corazón
    ================================================================ */
 
 * {
@@ -71,17 +71,18 @@ html, body {
 }
 
 /* ================================================================
-   FLORES - Esquina superior izquierda
+   ✅ FLORES - MÁS GRANDES (esquina superior izquierda)
    ================================================================ */
 .flowers-top {
     position: absolute;
-    top: -60px;
-    left: -60px;
-    width: 75vw;
-    max-width: 340px;
+    top: -80px; /* ✅ Subidas un poco para que se vean completas */
+    left: -80px;
+    /* ✅ Más grandes que antes (antes 75vw / 340px) */
+    width: 95vw;
+    max-width: 420px;
     z-index: 1;
     pointer-events: none;
-    filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
     animation: floresEntrar 1.2s cubic-bezier(0.25, 0.9, 0.3, 1.05) both;
 }
 
@@ -97,17 +98,17 @@ html, body {
 }
 
 /* ================================================================
-   TEXTO DE DEDICATORIA - MÁS GRANDE QUE ANTES
+   ✅ TEXTO DE DEDICATORIA - BAJADO para no chocar con las flores
    ================================================================ */
 .dedication-text {
     position: relative;
     z-index: 5;
-    margin-top: 8vh;
+    /* ✅ BAJADO: antes 8vh, ahora 14vh */
+    margin-top: 14vh;
     max-width: calc(100% - 90px);
     padding: 0 5px;
 
     font-family: "Playfair Display", serif;
-    /* ✅ Texto más grande */
     font-size: clamp(1.25rem, 5.6vw, 1.7rem);
     font-style: italic;
     font-weight: 900;
@@ -184,7 +185,6 @@ html, body {
 .bfly {
     position: absolute;
     pointer-events: none;
-    /* ✅ Tamaño base más grande */
     width: 100px;
     height: auto;
     z-index: 6;
@@ -193,7 +193,6 @@ html, body {
 }
 
 /* ---------- 1) MARIPOSAS CON LATIDO DE CORAZÓN ---------- */
-/* ✅ Las bajamos para que NO toquen el texto (que está arriba) */
 .bfly-palpitando {
     opacity: 0;
     animation:
@@ -201,14 +200,12 @@ html, body {
             latidoCorazon 1.6s ease-in-out infinite 1.3s;
 }
 
-/* Primera: en la zona media-derecha, debajo del texto */
 .bfly-p1 {
     top: 52%;
     right: 6%;
     width: 70px;
 }
 
-/* Segunda: en la zona media-izquierda, debajo del texto */
 .bfly-p2 {
     top: 62%;
     left: 5%;
@@ -227,7 +224,6 @@ html, body {
     }
 }
 
-/* ✅ Latido tipo corazón */
 @keyframes latidoCorazon {
     0% {
         transform: scale(1) rotate(-3deg);
@@ -256,7 +252,6 @@ html, body {
 }
 
 /* ---------- 2) MARIPOSAS CRUZANDO EN DIAGONAL ---------- */
-/* ✅ Cruzan por la mitad inferior de la pantalla, debajo del texto */
 .bfly-cruzando {
     opacity: 0;
     animation: cruzarDiagonal 7s ease-in-out infinite;
@@ -332,7 +327,6 @@ html, body {
     }
 }
 
-
 /* ================================================================
    RESPONSIVE
    ================================================================ */
@@ -340,7 +334,8 @@ html, body {
 /* Pantallas pequeñas (iPhone SE) */
 @media (max-height: 700px) {
     .dedication-text {
-        margin-top: 6vh;
+        /* ✅ BAJADO también en pantallas pequeñas */
+        margin-top: 11vh;
         font-size: clamp(1.1rem, 5vw, 1.4rem);
         max-width: calc(100% - 80px);
         line-height: 1.6;
@@ -350,8 +345,11 @@ html, body {
         max-width: 400px;
     }
     .flowers-top {
-        width: 65vw;
-        max-width: 260px;
+        /* ✅ Flores grandes también en pantallas pequeñas */
+        top: -70px;
+        left: -70px;
+        width: 85vw;
+        max-width: 300px;
     }
     .bfly-p1 {
         width: 55px;
@@ -372,7 +370,8 @@ html, body {
 /* Pantallas grandes (Pro Max, tablets) */
 @media (min-height: 900px) {
     .dedication-text {
-        margin-top: 10vh;
+        /* ✅ BAJADO también en pantallas grandes */
+        margin-top: 16vh;
         font-size: clamp(1.4rem, 6vw, 2rem);
         max-width: calc(100% - 110px);
     }
@@ -381,8 +380,11 @@ html, body {
         max-width: 550px;
     }
     .flowers-top {
-        width: 80vw;
-        max-width: 400px;
+        /* ✅ Flores más grandes aún en pantallas grandes */
+        top: -90px;
+        left: -90px;
+        width: 100vw;
+        max-width: 480px;
     }
     .bfly-p1 {
         width: 80px;
@@ -401,7 +403,7 @@ html, body {
 /* Modo horizontal (landscape) */
 @media (orientation: landscape) {
     .dedication-text {
-        margin-top: 4vh;
+        margin-top: 8vh;
         font-size: clamp(1rem, 3.2vw, 1.3rem);
         max-width: calc(100% - 120px);
     }
@@ -410,8 +412,10 @@ html, body {
         max-width: 350px;
     }
     .flowers-top {
-        width: 40vw;
-        max-width: 250px;
+        top: -50px;
+        left: -50px;
+        width: 50vw;
+        max-width: 280px;
     }
     .bfly-p1 {
         width: 55px;
