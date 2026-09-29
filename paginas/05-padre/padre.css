@@ -3,6 +3,7 @@
    - Corona más arriba
    - Nombres más arriba (sin huecos)
    - Princesa AL FRENTE (encima de los nombres)
+   - Transición de mariposas que cubren toda la pantalla
    ================================================================ */
 
 * {
@@ -69,11 +70,10 @@ html, body {
 }
 
 /* ================================================================
-   CORONA - ✅ MÁS ARRIBA
+   CORONA
    ================================================================ */
 .crown-display {
     position: relative;
-    /* ✅ Reducido de 6vh a 1.5vh para que quede pegado arriba */
     margin-top: 1.5vh;
     width: 45vw;
     max-width: 200px;
@@ -108,12 +108,11 @@ html, body {
 }
 
 /* ================================================================
-   SUBTÍTULO "Mis Padres:" - ✅ MÁS ARRIBA
+   SUBTÍTULO "Mis Padres:"
    ================================================================ */
 .section-subtitle {
     position: relative;
     z-index: 5;
-    /* ✅ Reducido de 3vh a 1vh */
     margin-top: 1vh;
     font-family: "Cinzel", serif;
     font-size: clamp(1.1rem, 5vw, 1.5rem);
@@ -143,12 +142,11 @@ html, body {
 }
 
 /* ================================================================
-   NOMBRES - ✅ MÁS ARRIBA, pegados al subtítulo
+   NOMBRES
    ================================================================ */
 .parents-names {
     position: relative;
     z-index: 5;
-    /* ✅ Reducido de 2.5vh a 0.5vh */
     margin-top: 0.5vh;
     font-family: "Great Vibes", cursive;
     font-size: clamp(2rem, 9vw, 3.2rem);
@@ -191,21 +189,19 @@ html, body {
 }
 
 /* ================================================================
-   PRINCESA - ✅ TOTALMENTE AL FRENTE (por encima de los nombres)
+   PRINCESA
    ================================================================ */
 .princess-cutout {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    /* ✅ Más grande para que destaque */
     width: 85vw;
     max-width: 450px;
     height: auto;
     max-height: 55vh;
     object-fit: contain;
     object-position: bottom center;
-    /* ✅ Z-INDEX MÁS ALTO QUE LOS NOMBRES (ellos tienen 5) */
     z-index: 10;
     pointer-events: none;
     filter: drop-shadow(0 -8px 20px rgba(0, 0, 0, 0.6));
@@ -226,7 +222,87 @@ html, body {
     }
 }
 
+/* ================================================================
+   ✅✅✅ TRANSICIÓN DE MARIPOSAS ✅✅✅
+   - Mariposas grandes que cubren toda la pantalla
+   - Animación lenta (2.6s)
+   - Brillo dorado intenso
+   ================================================================ */
+#mariposas-transicion {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    pointer-events: none;
+    z-index: 99999;
+    overflow: hidden;
+}
 
+.mariposa-transicion {
+    position: absolute;
+    height: auto;
+    /* Brillo dorado intenso para que destaquen */
+    filter:
+            drop-shadow(0 0 25px rgba(255, 215, 0, 1))
+            drop-shadow(0 0 50px rgba(212, 175, 55, 0.8))
+            drop-shadow(0 0 80px rgba(255, 215, 0, 0.5));
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+/* ===== VUELO HACIA LA DERECHA (esquina inferior izquierda → superior derecha) ===== */
+.mariposa-transicion.volar-derecha {
+    animation: volarDerecha 2.6s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+}
+
+@keyframes volarDerecha {
+    0% {
+        transform: translate(0, 0) rotate(-45deg) scale(0.3);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    50% {
+        transform: translate(75vw, -75vh) rotate(90deg) scale(1.4);
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(180vw, -180vh) rotate(270deg) scale(1);
+        opacity: 0;
+    }
+}
+
+/* ===== VUELO HACIA LA IZQUIERDA (esquina inferior derecha → superior izquierda) ===== */
+.mariposa-transicion.volar-izquierda {
+    animation: volarIzquierda 2.6s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+    transform: scaleX(-1);
+}
+
+@keyframes volarIzquierda {
+    0% {
+        transform: scaleX(-1) translate(0, 0) rotate(-45deg) scale(0.3);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    50% {
+        transform: scaleX(-1) translate(75vw, -75vh) rotate(90deg) scale(1.4);
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: scaleX(-1) translate(180vw, -180vh) rotate(270deg) scale(1);
+        opacity: 0;
+    }
+}
 
 /* ================================================================
    RESPONSIVE

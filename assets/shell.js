@@ -93,26 +93,37 @@ function precargarSiguiente(rutaActual) {
   }, 15000);
 }
 
-// ================================================================
-//  CAMBIAR DE PÁGINA (con transición suave)
-// ================================================================
 function cambiarPagina(ruta) {
   console.log('📄 Cambiando a:', ruta);
   if (!musicaIniciada) iniciarMusica();
   if (!contentFrame) return;
-  if (contentFrame.src.endsWith(ruta)) return;
+
+  // ✅ RESOLVER LA RUTA RELATIVA DESDE LA PÁGINA ACTUAL DEL IFRAME
+  let rutaFinal = ruta;
+  try {
+    const urlActual = contentFrame.contentWindow.location.href;
+    rutaFinal = new URL(ruta, urlActual).href;
+    console.log('🔗 Ruta resuelta a:', rutaFinal);
+  } catch (e) {
+    console.warn('No se pudo resolver la ruta:', e);
+  }
+
+  // Evitar recargar la misma página
+  if (contentFrame.src === rutaFinal) {
+    console.log('Ya estamos en esa página');
+    return;
+  }
 
   contentFrame.style.transition = 'opacity 0.5s ease';
   contentFrame.style.opacity = '0';
 
   setTimeout(() => {
-    contentFrame.src = ruta;
+    contentFrame.src = rutaFinal;
     contentFrame.onload = () => {
       contentFrame.style.opacity = '1';
     };
   }, 400);
 }
-
 // Exponer globalmente
 window.cambiarPagina = cambiarPagina;
 
