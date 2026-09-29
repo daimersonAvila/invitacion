@@ -1,9 +1,9 @@
 // ================================================================
-//  SHELL.JS v3.1 - Música de YouTube + Navegación + Precarga
-//  Optimizado para reducir el tiempo entre páginas
+//  SHELL.JS v3.2 - Música de YouTube + Navegación + Precarga
+//  + Contador centrado abajo (días, horas, min, seg)
 // ================================================================
 
-console.log('🟢 SHELL.JS v3.1 CARGADO');
+console.log('🟢 SHELL.JS v3.2 CARGADO');
 
 const musicBtn = document.getElementById('musicBtn');
 const contentFrame = document.getElementById('contentFrame');
@@ -13,8 +13,7 @@ let musicaIniciada = false;
 let musicaPausada = false;
 
 // ================================================================
-//  LISTA COMPLETA DE PÁGINAS (en orden) para la precarga
-//  ⚠️ Ajusta los nombres si tu estructura es diferente
+//  LISTA COMPLETA DE PÁGINAS (para la precarga)
 // ================================================================
 const PAGINAS = [
   'paginas/01-portada/portada.html',
@@ -22,13 +21,11 @@ const PAGINAS = [
   'paginas/03-keidy/keidy.html',
   'paginas/04-invitacion/invitacion.html',
   'paginas/05-padre/padre.html',
-  'paginas/06-padrinos/padrinos.html',
-  // Si tienes más, agrégalas aquí
+  'paginas/07-detalles/detalles.html',
+  'paginas/08-confirmacion/confirmacion.html',
+  'paginas/09-teesperamos/teesperamos.html',
 ];
 
-// ================================================================
-//  CACHÉ DE PRECARGA (evita duplicados)
-// ================================================================
 const paginasPrecargadas = new Set();
 
 // ================================================================
@@ -57,28 +54,23 @@ function iniciarMusica() {
 }
 
 // ================================================================
-//  ✅ PRECARGA: Descarga la siguiente página en segundo plano
+//  PRECARGA
 // ================================================================
 function precargarSiguiente(rutaActual) {
-  // Normalizar la ruta actual
   const rutaLimpia = rutaActual
       .replace(/^.*?paginas\//, 'paginas/')
       .replace(/[?#].*$/, '');
 
-  // Encontrar el índice de la página actual
   const indice = PAGINAS.findIndex(p => rutaLimpia.includes(p.split('/')[1]));
   if (indice === -1) return;
   if (indice === PAGINAS.length - 1) return;
 
   const siguiente = PAGINAS[indice + 1];
-
-  // No precargar dos veces la misma
   if (paginasPrecargadas.has(siguiente)) return;
   paginasPrecargadas.add(siguiente);
 
   console.log('📥 Precargando:', siguiente);
 
-  // Crear iframe invisible que carga la siguiente página
   const prefetch = document.createElement('iframe');
   prefetch.src = siguiente;
   prefetch.style.cssText =
@@ -87,18 +79,19 @@ function precargarSiguiente(rutaActual) {
   prefetch.setAttribute('tabindex', '-1');
   document.body.appendChild(prefetch);
 
-  // Eliminar el iframe después de 15s (ya cumplió su función)
   setTimeout(() => {
     if (prefetch.parentNode) prefetch.remove();
   }, 15000);
 }
 
+// ================================================================
+//  CAMBIAR DE PÁGINA
+// ================================================================
 function cambiarPagina(ruta) {
   console.log('📄 Cambiando a:', ruta);
   if (!musicaIniciada) iniciarMusica();
   if (!contentFrame) return;
 
-  // ✅ RESOLVER LA RUTA RELATIVA DESDE LA PÁGINA ACTUAL DEL IFRAME
   let rutaFinal = ruta;
   try {
     const urlActual = contentFrame.contentWindow.location.href;
@@ -108,7 +101,6 @@ function cambiarPagina(ruta) {
     console.warn('No se pudo resolver la ruta:', e);
   }
 
-  // Evitar recargar la misma página
   if (contentFrame.src === rutaFinal) {
     console.log('Ya estamos en esa página');
     return;
@@ -124,7 +116,6 @@ function cambiarPagina(ruta) {
     };
   }, 400);
 }
-// Exponer globalmente
 window.cambiarPagina = cambiarPagina;
 
 // ================================================================
@@ -169,26 +160,22 @@ if (musicBtn) {
 }
 
 // ================================================================
-//  ✅ DETECTAR CUANDO EL IFRAME TERMINA DE CARGAR
-//  Al terminar, precargamos la siguiente automáticamente
+//  DETECTAR CARGA DEL IFRAME
 // ================================================================
 contentFrame.addEventListener('load', () => {
   try {
     const rutaActual = contentFrame.contentWindow.location.pathname;
     precargarSiguiente(rutaActual);
   } catch (e) {
-    // Ignorar errores de CORS si los hubiera
     console.warn('No se pudo leer la ruta del iframe:', e);
   }
 });
 
 // ================================================================
-//  ✅ PRECARGA INICIAL (al cargar el shell)
-//  Esperamos 1 segundo para no saturar la red al inicio
+//  PRECARGA INICIAL
 // ================================================================
 setTimeout(() => {
   console.log('🚀 Iniciando precarga inicial...');
-  // Precargar la segunda y tercera página
   [1, 2].forEach(i => {
     if (PAGINAS[i] && !paginasPrecargadas.has(PAGINAS[i])) {
       paginasPrecargadas.add(PAGINAS[i]);
@@ -209,4 +196,43 @@ setTimeout(() => {
   });
 }, 1500);
 
-console.log('✅ SHELL.JS v3.1 LISTO');
+// ================================================================
+//  ✅ CONTADOR CENTRADO ABAJO (4 elementos separados)
+//  Fecha del evento: 29 Noviembre 2026 · 2:00 PM (UTC-5 Colombia)
+// ================================================================
+const FECHA_EVENTO = new Date('2026-11-29T14:00:00-05:00').getTime();
+
+function actualizarContador() {
+  const elDias = document.getElementById('cd-dias');
+  const elHoras = document.getElementById('cd-horas');
+  const elMin = document.getElementById('cd-min');
+  const elSeg = document.getElementById('cd-seg');
+
+  if (!elDias || !elHoras || !elMin || !elSeg) return;
+
+  const ahora = new Date().getTime();
+  const distancia = FECHA_EVENTO - ahora;
+
+  if (distancia < 0) {
+    elDias.textContent = '00';
+    elHoras.textContent = '00';
+    elMin.textContent = '00';
+    elSeg.textContent = '00';
+    return;
+  }
+
+  const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+  elDias.textContent = String(dias).padStart(2, '0');
+  elHoras.textContent = String(horas).padStart(2, '0');
+  elMin.textContent = String(minutos).padStart(2, '0');
+  elSeg.textContent = String(segundos).padStart(2, '0');
+}
+
+actualizarContador();
+setInterval(actualizarContador, 1000);
+
+console.log('✅ SHELL.JS v3.2 LISTO');

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<!-- IFRAME OCULTO DE YOUTUBE (música desde el segundo 26) -->
+<!-- IFRAME OCULTO DE YOUTUBE (música) -->
 <div id="youtube-audio-container">
   <iframe
           id="youtube-audio"
@@ -30,32 +30,60 @@
   ></iframe>
 </div>
 
-<!-- BOTÓN DE MÚSICA -->
+<!-- ✅ BOTÓN DE MÚSICA ARRIBA A LA DERECHA -->
 <button
         id="musicBtn"
+        class="music-btn"
         style="
-      position: fixed !important;
-      bottom: 20px !important;
-      right: 20px !important;
-      width: 55px !important;
-      height: 55px !important;
-      border-radius: 50% !important;
-      background: linear-gradient(135deg, #b30000, #4a0000) !important;
-      border: 2px solid #d4af37 !important;
-      color: #f9e596 !important;
-      font-size: 1.5rem !important;
-      cursor: pointer !important;
-      z-index: 2147483647 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-    "
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #b30000, #4a0000) !important;
+    border: 2px solid #d4af37 !important;
+    color: #f9e596 !important;
+    font-size: 1.5rem !important;
+    cursor: pointer !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6), 0 0 15px rgba(212,175,55,0.5) !important;
+  "
         aria-label="Reproducir música"
 >
   <span id="musicIcon">♪</span>
 </button>
+
+<!-- ✅ CONTADOR CENTRADO ABAJO (con el diseño completo) -->
+<div id="countdown-widget">
+  <span class="cd-title">FALTAN</span>
+  <div class="cd-row">
+    <div class="cd-item">
+      <span class="cd-value" id="cd-dias">--</span>
+      <span class="cd-unit">Días</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-item">
+      <span class="cd-value" id="cd-horas">--</span>
+      <span class="cd-unit">Horas</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-item">
+      <span class="cd-value" id="cd-min">--</span>
+      <span class="cd-unit">Min</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-item">
+      <span class="cd-value" id="cd-seg">--</span>
+      <span class="cd-unit">Seg</span>
+    </div>
+  </div>
+</div>
 
 <script src="assets/shell.js"></script>
 </body>
