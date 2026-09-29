@@ -226,24 +226,7 @@ html, body {
     }
 }
 
-/* ================================================================
-   BOTONES DE NAVEGACIÓN
-   ================================================================ */
-.nav-btn {
-    width: 38px !important;
-    height: 38px !important;
-    font-size: 1rem !important;
-    background: rgba(74, 0, 0, 0.6) !important;
-    border: 1.5px solid rgba(212, 175, 55, 0.7) !important;
-    box-shadow:
-            0 0 10px rgba(212, 175, 55, 0.4),
-            0 3px 8px rgba(0, 0, 0, 0.4) !important;
-    /* ✅ Z-index por encima de la princesa para que sigan accesibles */
-    z-index: 100 !important;
-}
 
-.nav-prev { left: 8px !important; }
-.nav-next { right: 8px !important; }
 
 /* ================================================================
    RESPONSIVE
