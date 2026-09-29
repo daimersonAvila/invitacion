@@ -659,3 +659,68 @@ html, body {
         width: 85px !important;
     }
 }
+/* ================================================================
+   MENSAJE DE AGRADECIMIENTO (después de enviar)
+   ================================================================ */
+.gracias-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 30px 20px;
+    animation: graciasEntrar 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+}
+
+@keyframes graciasEntrar {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+.gracias-icon {
+    font-size: 2rem;
+    color: #d4af37;
+    animation: girarIcono 4s linear infinite;
+    text-shadow: 0 0 25px rgba(255, 215, 0, 1);
+}
+
+.gracias-titulo {
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(2.5rem, 11vw, 3.5rem);
+    color: #d4af37;
+    line-height: 1;
+    -webkit-text-stroke: 0.5px #8b6914;
+    text-shadow:
+            0 3px 6px rgba(0, 0, 0, 0.9),
+            0 0 20px rgba(255, 215, 0, 1),
+            0 0 40px rgba(255, 215, 0, 0.6);
+}
+
+.gracias-sub {
+    font-family: "Cinzel", serif;
+    font-size: clamp(0.95rem, 4vw, 1.15rem);
+    color: #f9e596;
+    letter-spacing: 2px;
+    text-align: center;
+    text-shadow:
+            0 2px 4px rgba(0, 0, 0, 0.9),
+            0 0 12px rgba(255, 215, 0, 0.7);
+}
+
+.gracias-detalle {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: clamp(0.85rem, 3.5vw, 1rem);
+    color: #f9e596;
+    text-align: center;
+    margin-top: 8px;
+    opacity: 0.9;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
