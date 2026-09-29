@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Mis XV Años - Keidy Julieth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/base.css" />
+  <link rel="stylesheet" href="../../assets/nav.css" />
+  <link rel="stylesheet" href="portada.css" />
+</head>
+<body>
+<div id="pageFlip">
+  <div id="intro" class="intro">
+    <div class="video-wrapper">
+
+      <!-- ✅ VIDEO DE YOUTUBE (iframe directo, sin API) -->
+      <iframe
+              id="introVideo"
+              class="intro-video"
+              src="https://www.youtube.com/embed/vhG5usAFL_g?si=SiTxCvckN-zfc8S2&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&fs=0&disablekb=1&iv_load_policy=3&loop=1&playlist=vhG5usAFL_g"
+              title="Video de introducción"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"ç
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+      ></iframe>
+
+      <!-- OVERLAY -->
+      <div id="tapOverlay" class="tap-overlay">
+        <div class="tap-content">
+          <p class="tap-title">Mis XV Años</p>
+          <p class="tap-sub">Keidy Julieth</p>
+          <div class="tap-icon">✦</div>
+          <p class="tap-hint">Abre el libro de los sueños</p>
+        </div>
+      </div>
+
+      <!-- Botón saltar intro -->
+      <button id="skipBtn" class="skip-btn hidden">Saltar intro ›</button>
+
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/animations.js"></script>
+<script src="../../assets/nav.js"></script>
+<script src="portada.js"></script>
+</body>
+</html>

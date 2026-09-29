@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirma tu Asistencia - Mis XV Años</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/base.css" />
+    <link rel="stylesheet" href="../../assets/nav.css" />
+    <link rel="stylesheet" href="confirmacion.css" />
+  </head>
+  <body>
+    <div id="pageFlip">
+      <!-- PANTALLA 11.5: CONFIRMACIÓN (RSVP) (Fondo Rosa Claro) -->
+      <section class="section bg-light-pink rsvp-section">
+        <h3 class="section-subtitle">Confirma tu Asistencia</h3>
+        <p class="rsvp-text">
+          Tu presencia es mi mejor regalo. Por favor confirma antes del 20 de
+          Noviembre.
+        </p>
+        <form id="rsvpForm" class="rsvp-form">
+          <input
+            type="text"
+            id="nombre"
+            placeholder="Tu nombre completo"
+            required
+          />
+          <select id="asistencia" required>
+            <option value="">¿Nos acompañarás?</option>
+            <option value="Sí, asistiré">Sí, asistiré ✦</option>
+            <option value="No podré asistir">No podré asistir</option>
+          </select>
+          <input
+            type="number"
+            id="personas"
+            placeholder="Número de personas"
+            min="1"
+            max="10"
+            value="1"
+          />
+          <button type="submit" class="btn-enviar">Enviar Confirmación</button>
+        </form>
+        <img src="../../assets/img/flores.png" alt="Flores" class="flowers-bottom" />
+      </section>
+    </div>
+
+    <script src="../../assets/animations.js"></script>
+    <script src="../../assets/nav.js"></script>
+    <script src="confirmacion.js"></script>
+  </body>
+</html>

@@ -1,0 +1,310 @@
+/* ================================================================
+   PADRE.CSS - Sección "Mis Padres"
+   - Corona más arriba
+   - Nombres más arriba (sin huecos)
+   - Princesa AL FRENTE (encima de los nombres)
+   ================================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Lato", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#pageFlip {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    will-change: opacity;
+}
+
+/* ================================================================
+   SECCIÓN PRINCIPAL
+   ================================================================ */
+.section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 0;
+}
+
+/* ================================================================
+   FONDO - Degradado rojo a rosa
+   ================================================================ */
+.bg-gradient-red-pink {
+    background:
+            radial-gradient(
+                    ellipse at 50% 20%,
+                    rgba(255, 220, 220, 0.85) 0%,
+                    transparent 55%
+            ),
+            radial-gradient(
+                    ellipse at 50% 100%,
+                    rgba(180, 30, 30, 0.5) 0%,
+                    transparent 60%
+            ),
+            linear-gradient(
+                    170deg,
+                    #b30000 0%,
+                    #d97a7a 35%,
+                    #ffb6c1 70%,
+                    #ffd1dc 100%
+            );
+}
+
+/* ================================================================
+   CORONA - ✅ MÁS ARRIBA
+   ================================================================ */
+.crown-display {
+    position: relative;
+    /* ✅ Reducido de 6vh a 1.5vh para que quede pegado arriba */
+    margin-top: 1.5vh;
+    width: 45vw;
+    max-width: 200px;
+    z-index: 5;
+    animation: coronaEntrar 1.4s cubic-bezier(0.2, 0.9, 0.3, 1.1) 0.2s both;
+}
+
+@keyframes coronaEntrar {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(-30px);
+        filter: blur(10px) brightness(1.8);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.08) translateY(5px);
+        filter: blur(0) brightness(1.3);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0) brightness(1);
+    }
+}
+
+.crown-display img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.85))
+    drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4));
+}
+
+/* ================================================================
+   SUBTÍTULO "Mis Padres:" - ✅ MÁS ARRIBA
+   ================================================================ */
+.section-subtitle {
+    position: relative;
+    z-index: 5;
+    /* ✅ Reducido de 3vh a 1vh */
+    margin-top: 1vh;
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #4a0000;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow:
+            0 1px 3px rgba(255, 255, 255, 0.8),
+            0 2px 6px rgba(74, 0, 0, 0.3);
+
+    animation: subtituloEntrar 1s ease-out 0.6s both;
+}
+
+@keyframes subtituloEntrar {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* ================================================================
+   NOMBRES - ✅ MÁS ARRIBA, pegados al subtítulo
+   ================================================================ */
+.parents-names {
+    position: relative;
+    z-index: 5;
+    /* ✅ Reducido de 2.5vh a 0.5vh */
+    margin-top: 0.5vh;
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(2rem, 9vw, 3.2rem);
+    line-height: 1.25;
+    color: #d4af37;
+    text-align: center;
+
+    -webkit-text-stroke: 0.5px #8b6914;
+    text-stroke: 0.5px #8b6914;
+
+    text-shadow:
+            0 3px 6px rgba(74, 0, 0, 0.7),
+            0 0 15px rgba(255, 215, 0, 0.85),
+            0 0 30px rgba(255, 215, 0, 0.5);
+
+    animation: nombresEntrar 1.4s cubic-bezier(0.2, 0.9, 0.3, 1.1) 0.9s both;
+}
+
+@keyframes nombresEntrar {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) translateY(20px);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
+}
+
+.ampersand {
+    display: inline-block;
+    font-size: 0.75em;
+    color: #f9e596;
+    margin: 0.2em 0;
+    text-shadow:
+            0 0 12px rgba(255, 215, 0, 0.9),
+            0 0 25px rgba(255, 215, 0, 0.6);
+}
+
+/* ================================================================
+   PRINCESA - ✅ TOTALMENTE AL FRENTE (por encima de los nombres)
+   ================================================================ */
+.princess-cutout {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* ✅ Más grande para que destaque */
+    width: 85vw;
+    max-width: 450px;
+    height: auto;
+    max-height: 55vh;
+    object-fit: contain;
+    object-position: bottom center;
+    /* ✅ Z-INDEX MÁS ALTO QUE LOS NOMBRES (ellos tienen 5) */
+    z-index: 10;
+    pointer-events: none;
+    filter: drop-shadow(0 -8px 20px rgba(0, 0, 0, 0.6));
+
+    animation: princesaEntrar 1.8s cubic-bezier(0.2, 0.9, 0.3, 1.1) 1.3s both;
+}
+
+@keyframes princesaEntrar {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(80px) scale(0.85);
+        filter: blur(10px) drop-shadow(0 -8px 20px rgba(0, 0, 0, 0.6));
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+        filter: blur(0) drop-shadow(0 -8px 20px rgba(0, 0, 0, 0.6));
+    }
+}
+
+/* ================================================================
+   BOTONES DE NAVEGACIÓN
+   ================================================================ */
+.nav-btn {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 1rem !important;
+    background: rgba(74, 0, 0, 0.6) !important;
+    border: 1.5px solid rgba(212, 175, 55, 0.7) !important;
+    box-shadow:
+            0 0 10px rgba(212, 175, 55, 0.4),
+            0 3px 8px rgba(0, 0, 0, 0.4) !important;
+    /* ✅ Z-index por encima de la princesa para que sigan accesibles */
+    z-index: 100 !important;
+}
+
+.nav-prev { left: 8px !important; }
+.nav-next { right: 8px !important; }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-height: 700px) {
+    .crown-display {
+        margin-top: 0.5vh;
+        width: 38vw;
+        max-width: 160px;
+    }
+    .section-subtitle {
+        margin-top: 0.5vh;
+        font-size: clamp(0.95rem, 4.5vw, 1.3rem);
+    }
+    .parents-names {
+        margin-top: 0.3vh;
+        font-size: clamp(1.7rem, 8.5vw, 2.6rem);
+    }
+    .princess-cutout {
+        max-height: 52vh;
+        max-width: 380px;
+    }
+}
+
+@media (min-height: 900px) {
+    .crown-display {
+        margin-top: 2vh;
+        width: 50vw;
+        max-width: 240px;
+    }
+    .section-subtitle {
+        margin-top: 1.5vh;
+        font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+    }
+    .parents-names {
+        margin-top: 1vh;
+        font-size: clamp(2.4rem, 10vw, 3.6rem);
+    }
+    .princess-cutout {
+        max-height: 60vh;
+        max-width: 520px;
+    }
+}
+
+@media (orientation: landscape) {
+    .crown-display {
+        margin-top: 0.5vh;
+        width: 25vw;
+        max-width: 150px;
+    }
+    .section-subtitle {
+        margin-top: 0.3vh;
+        font-size: clamp(0.9rem, 3vw, 1.2rem);
+    }
+    .parents-names {
+        margin-top: 0.2vh;
+        font-size: clamp(1.5rem, 5vw, 2.2rem);
+    }
+    .princess-cutout {
+        max-height: 65vh;
+        max-width: 300px;
+    }
+}

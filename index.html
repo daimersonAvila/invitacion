@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Mis XV Años - Keidy Julieth</title>
+  <link rel="stylesheet" href="assets/base.css" />
+  <link rel="stylesheet" href="assets/nav.css" />
+  <link rel="stylesheet" href="assets/shell.css" />
+</head>
+<body>
+
+<!-- IFRAME OCULTO DE YOUTUBE (música desde el segundo 26) -->
+<div id="youtube-audio-container">
+  <iframe
+          id="youtube-audio"
+          src="https://www.youtube.com/embed/OiC1rgCPmUQ?autoplay=0&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=OiC1rgCPmUQ&start=26&fs=0&disablekb=1&iv_load_policy=3&enablejsapi=1"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+  ></iframe>
+</div>
+
+<!-- CONTENEDOR DE LAS PÁGINAS -->
+<div id="pageFlip">
+  <iframe
+          id="contentFrame"
+          src="paginas/01-portada/portada.html"
+          allow="autoplay; encrypted-media"
+  ></iframe>
+</div>
+
+<!-- BOTÓN DE MÚSICA -->
+<button
+        id="musicBtn"
+        style="
+      position: fixed !important;
+      bottom: 20px !important;
+      right: 20px !important;
+      width: 55px !important;
+      height: 55px !important;
+      border-radius: 50% !important;
+      background: linear-gradient(135deg, #b30000, #4a0000) !important;
+      border: 2px solid #d4af37 !important;
+      color: #f9e596 !important;
+      font-size: 1.5rem !important;
+      cursor: pointer !important;
+      z-index: 2147483647 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    "
+        aria-label="Reproducir música"
+>
+  <span id="musicIcon">♪</span>
+</button>
+
+<script src="assets/shell.js"></script>
+</body>
+</html>

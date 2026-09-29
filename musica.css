@@ -1,0 +1,53 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #1a0303;
+}
+
+#contentFrame {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border: none;
+    display: block;
+}
+
+/* Botón de música flotante */
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #b30000, #4a0000);
+    border: 2px solid #d4af37;
+    color: #f9e596;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 99999;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.music-btn:hover { transform: scale(1.1); }
+
+.music-btn.playing #musicIcon {
+    animation: spin 3s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    from { transform: rotate(0); }
+    to { transform: rotate(360deg); }
+}
+
+.music-btn.hidden { display: none; }

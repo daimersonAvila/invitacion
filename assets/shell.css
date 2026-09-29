@@ -1,0 +1,68 @@
+/* =========================================================
+   SHELL.CSS
+   ========================================================= */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #1a0303;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   CONTENEDOR DE LAS PÁGINAS HIJAS
+   ========================================================= */
+#pageFlip {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#contentFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* =========================================================
+   IFRAME DE YOUTUBE OCULTO (música de fondo)
+   ========================================================= */
+#youtube-audio-container {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+#youtube-audio {
+  width: 1px;
+  height: 1px;
+  border: 0;
+}
+
+/* =========================================================
+   ANIMACIÓN DEL ICONO DE MÚSICA
+   ========================================================= */
+.music-btn.playing #musicIcon {
+  animation: spin 3s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}

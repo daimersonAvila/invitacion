@@ -1,0 +1,87 @@
+/* =========================================================
+   NAV.CSS
+   Estilos de los botones ‹ ›
+   Sin efectos de hoja, sin transiciones raras.
+   ========================================================= */
+
+:root {
+    --dorado: #d4af37;
+    --dorado-claro: #f9e596;
+}
+
+/* =========================================================
+   BOTONES ANTERIOR / SIGUIENTE
+   ========================================================= */
+.page-nav {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid var(--dorado);
+    background: rgba(74, 0, 0, 0.55);
+    color: var(--dorado-claro);
+    font-size: 1.3rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    box-shadow:
+            0 0 14px rgba(212, 175, 55, 0.55),
+            0 4px 12px rgba(0, 0, 0, 0.5);
+    transition:
+            transform 0.25s ease,
+            background 0.25s ease,
+            box-shadow 0.25s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(74, 0, 0, 0.85);
+    transform: translateY(-50%) scale(1.06);
+    box-shadow:
+            0 0 22px rgba(212, 175, 55, 0.85),
+            0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.nav-btn:active {
+    transform: translateY(-50%) scale(0.96);
+}
+
+.nav-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.nav-prev {
+    left: 12px;
+}
+
+.nav-next {
+    right: 12px;
+}
+
+@media (min-width: 700px) {
+    .nav-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 1.5rem;
+    }
+    .nav-prev {
+        left: 24px;
+    }
+    .nav-next {
+        right: 24px;
+    }
+}
