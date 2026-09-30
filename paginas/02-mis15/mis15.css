@@ -1,6 +1,5 @@
 /* ================================================================
    MIS15.CSS - Sección "Mis 15 Años"
-   Fondo rojo oscuro elegante (igual que Te Esperamos)
    ================================================================ */
 
 /* ===== RESET Y BASE ===== */
@@ -16,7 +15,6 @@ html, body {
     overflow: hidden;
     font-family: "Lato", sans-serif;
     -webkit-tap-highlight-color: transparent;
-    background: #1a0303;
 }
 
 #pageFlip {
@@ -54,100 +52,42 @@ html, body {
     align-items: center;
     justify-content: flex-start;
     overflow: hidden;
-    padding: 0 0 90px 0;
+    padding: 0;
 }
 
-/* ================================================================
-   ✅ FONDO ROJO OSCURO ELEGANTE (igual que Te Esperamos)
-   ================================================================ */
+/* ===== FONDO ROSA MÁGICO ===== */
 .bg-light-pink {
-    background:
-            radial-gradient(
-                    ellipse at 50% 15%,
-                    rgba(160, 25, 25, 0.7) 0%,
-                    transparent 55%
-            ),
-            radial-gradient(
-                    ellipse at 50% 85%,
-                    rgba(100, 10, 10, 0.6) 0%,
-                    transparent 60%
-            ),
-            radial-gradient(
-                    ellipse at 15% 40%,
-                    rgba(80, 0, 0, 0.4) 0%,
-                    transparent 50%
-            ),
-            radial-gradient(
-                    ellipse at 85% 60%,
-                    rgba(80, 0, 0, 0.4) 0%,
-                    transparent 50%
-            ),
-            linear-gradient(
-                    170deg,
-                    #5a0808 0%,
-                    #450404 30%,
-                    #300202 60%,
-                    #1a0000 100%
-            );
-}
-
-/* ✅ Destellos dorados sutiles */
-.bg-light-pink::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-            radial-gradient(circle at 15% 20%, rgba(255, 200, 100, 0.18) 0%, transparent 2%),
-            radial-gradient(circle at 85% 15%, rgba(255, 200, 100, 0.15) 0%, transparent 1.5%),
-            radial-gradient(circle at 25% 70%, rgba(255, 200, 100, 0.12) 0%, transparent 1.8%),
-            radial-gradient(circle at 75% 85%, rgba(255, 200, 100, 0.15) 0%, transparent 1.5%),
-            radial-gradient(circle at 50% 50%, rgba(255, 200, 100, 0.08) 0%, transparent 3%),
-            radial-gradient(circle at 10% 50%, rgba(255, 200, 100, 0.1) 0%, transparent 2%),
-            radial-gradient(circle at 90% 60%, rgba(255, 200, 100, 0.1) 0%, transparent 2%);
-    pointer-events: none;
-    z-index: 1;
-    animation: parpadeoEstrellas 4s ease-in-out infinite;
-}
-
-@keyframes parpadeoEstrellas {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
+    background: radial-gradient(
+            circle at center,
+            #fff0f5 0%,
+            #ffd1dc 50%,
+            #ffb6c1 100%
+    );
 }
 
 /* ================================================================
-   ✅ FLORES SUPERIORES
+   FLORES SUPERIORES
    ================================================================ */
 .flowers-top {
     position: absolute;
     top: -10px;
     left: 0;
     width: 100vw;
-    z-index: 3;
+    z-index: 2;
     pointer-events: none;
-    filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.5));
-    animation: floresCaer 1.6s cubic-bezier(0.25, 0.9, 0.3, 1.05) 0.1s both;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+    animation: floresCaer 1.4s cubic-bezier(0.25, 0.9, 0.3, 1.05) 0.1s both;
 }
 
 @keyframes floresCaer {
-    0% {
-        transform: translateY(-110%) rotate(-3deg);
-        opacity: 0;
-    }
-    60% {
-        transform: translateY(3%) rotate(1deg);
-        opacity: 1;
-    }
-    80% {
-        transform: translateY(-2%) rotate(-0.5deg);
-    }
-    100% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
+    0% { transform: translateY(-110%) rotate(-3deg); opacity: 0; }
+    60% { transform: translateY(3%) rotate(1deg); opacity: 1; }
+    80% { transform: translateY(-2%) rotate(-0.5deg); }
+    100% { transform: translateY(0) rotate(0deg); opacity: 1; }
 }
 
 /* ================================================================
-   ✅ CONTENEDOR DEL MARCO
+   CONTENEDOR DEL MARCO
    ================================================================ */
 .banner-container {
     position: relative;
@@ -161,9 +101,6 @@ html, body {
     padding-top: 8vh;
 }
 
-/* ================================================================
-   ✅ MARCO OVALADO + CORONA
-   ================================================================ */
 .crown-frame {
     position: relative;
     width: 70vw;
@@ -173,7 +110,7 @@ html, body {
     justify-content: center;
     align-items: center;
     z-index: 15;
-    animation: marcoMagico 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
+    animation: marcoMagico 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
 }
 
 @keyframes marcoMagico {
@@ -187,9 +124,7 @@ html, body {
         transform: scale(1.1) rotate(2deg);
         filter: blur(3px) brightness(1.4);
     }
-    75% {
-        transform: scale(0.96) rotate(-1deg);
-    }
+    75% { transform: scale(0.96) rotate(-1deg); }
     100% {
         opacity: 1;
         transform: scale(1) rotate(0deg);
@@ -197,52 +132,26 @@ html, body {
     }
 }
 
-/* ✅ Resplandor pulsante detrás del marco */
-.crown-frame::before {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    border-radius: 50%;
-    background: radial-gradient(
-            circle,
-            rgba(255, 215, 0, 0.4) 0%,
-            rgba(255, 215, 0, 0.15) 40%,
-            transparent 70%
-    );
-    z-index: 0;
-    pointer-events: none;
-    animation: resplandor 3s ease-in-out infinite;
-}
-
-@keyframes resplandor {
-    0%, 100% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.15);
-    }
-}
-
+/* ✅ Imagen del aro/marco - reducido el brillo para no lavar el texto */
 .aro-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
     pointer-events: none;
 }
 
 /* ================================================================
-   ✅ TEXTO "MIS 15 AÑOS"
+   TEXTO "MIS 15 AÑOS" - Dorado sólido nítido con contorno oscuro
    ================================================================ */
 .frame-text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    /* ✅ Z-index muy alto para que NADA lo tape */
     z-index: 50;
     text-align: center;
     display: flex;
@@ -250,6 +159,7 @@ html, body {
     justify-content: center;
     align-items: center;
     width: 75%;
+    /* ✅ Aseguramos que esté al frente */
     isolation: isolate;
 }
 
@@ -257,26 +167,29 @@ html, body {
 .title-years {
     font-family: "Great Vibes", cursive;
     line-height: 1;
-    color: #ffd700;
-    -webkit-text-stroke: 1.2px #6b4400;
-    text-stroke: 1.2px #6b4400;
+    /* ✅ Dorado sólido, sin degradado transparente */
+    color: #d4af37;
+    /* ✅ Contorno oscuro que hace resaltar las letras */
+    -webkit-text-stroke: 1px #6b4400;
+    text-stroke: 1px #6b4400;
+    /* ✅ Sombra fuerte detrás + brillo dorado alrededor */
     text-shadow:
-            0 2px 4px rgba(74, 0, 0, 0.8),
-            0 0 10px rgba(255, 215, 0, 1),
-            0 0 25px rgba(255, 215, 0, 0.7),
-            0 0 45px rgba(255, 215, 0, 0.4);
+            0 2px 4px rgba(74, 0, 0, 0.7),
+            0 0 8px rgba(212, 175, 55, 0.9),
+            0 0 20px rgba(212, 175, 55, 0.6);
+    /* ✅ Eliminamos cualquier filtro que pueda lavar el texto */
     filter: none;
 }
 
 .title-15 {
     font-size: clamp(2.2rem, 10vw, 3.5rem);
-    animation: textoEntrar 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.2) 1.2s both;
+    animation: textoEntrar 1s cubic-bezier(0.2, 0.9, 0.3, 1.2) 1.2s both;
 }
 
 .title-years {
     font-size: clamp(1.8rem, 8vw, 3rem);
     margin-top: -8px;
-    animation: textoEntrar 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.2) 1.5s both;
+    animation: textoEntrar 1s cubic-bezier(0.2, 0.9, 0.3, 1.2) 1.5s both;
 }
 
 @keyframes textoEntrar {
@@ -297,7 +210,7 @@ html, body {
 }
 
 /* ================================================================
-   ✅ PRINCESA
+   PRINCESA
    ================================================================ */
 .princess-banner {
     position: absolute;
@@ -310,9 +223,9 @@ html, body {
     max-height: 55vh;
     object-fit: contain;
     object-position: bottom;
-    z-index: 4;
+    z-index: 3;
     pointer-events: none;
-    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
     opacity: 0;
     animation: princesaSubir 2s cubic-bezier(0.2, 0.9, 0.3, 1) 2s forwards;
 }
@@ -321,35 +234,31 @@ html, body {
     0% {
         opacity: 0;
         transform: translateX(-50%) translateY(120%) scale(0.6);
-        filter: blur(12px) brightness(1.5) drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
+        filter: blur(12px) brightness(1.5) drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
     }
     50% {
         opacity: 0.8;
         transform: translateX(-50%) translateY(-15px) scale(1.05);
         filter: blur(2px) brightness(1.2) drop-shadow(0 0 30px rgba(212, 175, 55, 0.9));
     }
-    75% {
-        transform: translateX(-50%) translateY(5px) scale(0.98);
-    }
+    75% { transform: translateX(-50%) translateY(5px) scale(0.98); }
     100% {
         opacity: 1;
         transform: translateX(-50%) translateY(0) scale(1);
-        filter: blur(0) brightness(1) drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
+        filter: blur(0) brightness(1) drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
     }
 }
 
 /* ================================================================
-   ✅ MARIPOSAS LOCAS
+   MARIPOSAS LOCAS
    ================================================================ */
 .bfly {
     position: absolute;
     pointer-events: none;
-    z-index: 7;
+    z-index: 6;
     width: 40px;
     height: auto;
-    filter:
-            drop-shadow(0 0 10px rgba(212, 175, 55, 0.7))
-            drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
     will-change: transform;
     opacity: 0;
     animation-fill-mode: forwards;
@@ -364,14 +273,8 @@ html, body {
 }
 
 @keyframes mariposaAparecer {
-    from {
-        opacity: 0;
-        transform: scale(0);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* ===== Rutas de vuelo ===== */
@@ -405,51 +308,19 @@ html, body {
    RESPONSIVE
    ================================================================ */
 @media (max-height: 700px) {
-    .section {
-        padding-bottom: 80px;
-    }
-    .banner-container {
-        padding-top: 6vh;
-    }
-    .crown-frame {
-        width: 60vw;
-        max-width: 280px;
-    }
-    .princess-banner {
-        max-height: 50vh;
-    }
+    .banner-container { padding-top: 6vh; }
+    .crown-frame { width: 60vw; max-width: 280px; }
+    .princess-banner { max-height: 50vh; }
 }
 
 @media (min-height: 900px) {
-    .section {
-        padding-bottom: 100px;
-    }
-    .banner-container {
-        padding-top: 10vh;
-    }
-    .crown-frame {
-        width: 75vw;
-        max-width: 360px;
-    }
-    .princess-banner {
-        max-height: 58vh;
-        max-width: 420px;
-    }
+    .banner-container { padding-top: 10vh; }
+    .crown-frame { width: 75vw; max-width: 360px; }
+    .princess-banner { max-height: 58vh; max-width: 420px; }
 }
 
 @media (orientation: landscape) {
-    .section {
-        padding-bottom: 70px;
-    }
-    .banner-container {
-        padding-top: 3vh;
-    }
-    .crown-frame {
-        width: 40vh;
-        max-width: 280px;
-    }
-    .princess-banner {
-        max-height: 60vh;
-        max-width: 30vh;
-    }
+    .banner-container { padding-top: 3vh; }
+    .crown-frame { width: 40vh; max-width: 280px; }
+    .princess-banner { max-height: 60vh; max-width: 30vh; }
 }
