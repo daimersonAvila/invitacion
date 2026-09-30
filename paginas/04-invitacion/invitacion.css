@@ -1,9 +1,6 @@
 /* ================================================================
-   INVITACION.CSS - Sección de dedicatoria estilo "cuento dorado"
-   - Flores MÁS GRANDES en la esquina
-   - Texto BAJADO para no chocar con las flores
-   - Princesa centrada y grande
-   - Mariposas GRANDES con latido de corazón
+   INVITACION.CSS - Sección de dedicatoria
+   Fondo rojo vino + texto dorado brillante (sin contorno café)
    ================================================================ */
 
 * {
@@ -18,6 +15,7 @@ html, body {
     overflow: hidden;
     font-family: "Lato", sans-serif;
     -webkit-tap-highlight-color: transparent;
+    background: #1a0303;
 }
 
 #pageFlip {
@@ -38,51 +36,80 @@ html, body {
     align-items: center;
     justify-content: flex-start;
     overflow: hidden;
-    padding: 0;
+    padding: 0 0 90px 0;
 }
 
 /* ================================================================
-   FONDO - Degradado suave tipo "bokeh mágico"
+   ✅ FONDO ROJO VINO PROFUNDO (unificado)
    ================================================================ */
-.bg-gradient-pink-red {
+.bg-gradient-pink-red,
+.bg-dark-red {
     background:
             radial-gradient(
-                    circle at 20% 30%,
-                    rgba(255, 220, 200, 0.9) 0%,
-                    transparent 45%
+                    ellipse at 50% 15%,
+                    rgba(160, 25, 25, 0.7) 0%,
+                    transparent 55%
             ),
             radial-gradient(
-                    circle at 80% 60%,
-                    rgba(255, 180, 160, 0.7) 0%,
+                    ellipse at 50% 85%,
+                    rgba(100, 10, 10, 0.6) 0%,
+                    transparent 60%
+            ),
+            radial-gradient(
+                    ellipse at 15% 40%,
+                    rgba(80, 0, 0, 0.4) 0%,
                     transparent 50%
             ),
             radial-gradient(
-                    circle at 50% 90%,
-                    rgba(180, 30, 30, 0.6) 0%,
-                    transparent 60%
+                    ellipse at 85% 60%,
+                    rgba(80, 0, 0, 0.4) 0%,
+                    transparent 50%
             ),
             linear-gradient(
                     170deg,
-                    #ffd9c0 0%,
-                    #ffb6a0 25%,
-                    #d97a7a 60%,
-                    #a82020 100%
+                    #5a0808 0%,
+                    #450404 30%,
+                    #300202 60%,
+                    #1a0000 100%
             );
 }
 
+/* ✅ Destellos dorados sutiles */
+.bg-gradient-pink-red::before,
+.bg-dark-red::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+            radial-gradient(circle at 15% 20%, rgba(255, 200, 100, 0.18) 0%, transparent 2%),
+            radial-gradient(circle at 85% 15%, rgba(255, 200, 100, 0.15) 0%, transparent 1.5%),
+            radial-gradient(circle at 25% 70%, rgba(255, 200, 100, 0.12) 0%, transparent 1.8%),
+            radial-gradient(circle at 75% 85%, rgba(255, 200, 100, 0.15) 0%, transparent 1.5%),
+            radial-gradient(circle at 50% 50%, rgba(255, 200, 100, 0.08) 0%, transparent 3%),
+            radial-gradient(circle at 10% 50%, rgba(255, 200, 100, 0.1) 0%, transparent 2%),
+            radial-gradient(circle at 90% 60%, rgba(255, 200, 100, 0.1) 0%, transparent 2%);
+    pointer-events: none;
+    z-index: 0;
+    animation: parpadeo 4s ease-in-out infinite;
+}
+
+@keyframes parpadeo {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
 /* ================================================================
-   ✅ FLORES - MÁS GRANDES (esquina superior izquierda)
+   ✅ FLORES - Esquina superior izquierda
    ================================================================ */
 .flowers-top {
     position: absolute;
-    top: -80px; /* ✅ Subidas un poco para que se vean completas */
+    top: -80px;
     left: -80px;
-    /* ✅ Más grandes que antes (antes 75vw / 340px) */
     width: 95vw;
     max-width: 420px;
     z-index: 1;
     pointer-events: none;
-    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
     animation: floresEntrar 1.2s cubic-bezier(0.25, 0.9, 0.3, 1.05) both;
 }
 
@@ -98,12 +125,12 @@ html, body {
 }
 
 /* ================================================================
-   ✅ TEXTO DE DEDICATORIA - BAJADO para no chocar con las flores
+   ✅ TEXTO DE DEDICATORIA - Dorado brillante SIN contorno café
+   (misma paleta que "Mis Padres" pero sin el -webkit-text-stroke)
    ================================================================ */
 .dedication-text {
     position: relative;
     z-index: 5;
-    /* ✅ BAJADO: antes 8vh, ahora 14vh */
     margin-top: 14vh;
     max-width: calc(100% - 90px);
     padding: 0 5px;
@@ -114,20 +141,18 @@ html, body {
     font-weight: 900;
     line-height: 1.7;
 
-    /* ✅ Dorado sólido */
-    color: #d4af37;
+    /* ✅ Mismo dorado que en Mis Padres */
+    color: #ffd700;
     text-align: center;
 
-    /* ✅ Contorno oscuro para definición */
-    -webkit-text-stroke: 0.6px #6b4400;
-    text-stroke: 0.6px #6b4400;
+    /* ❌ SIN contorno café */
 
-    /* ✅ Sombra profunda + brillo dorado */
+    /* ✅ Múltiples capas de brillo dorado */
     text-shadow:
-            0 2px 4px rgba(74, 0, 0, 0.85),
-            0 3px 8px rgba(0, 0, 0, 0.5),
-            0 0 12px rgba(255, 215, 0, 0.85),
-            0 0 25px rgba(255, 215, 0, 0.5);
+            0 3px 6px rgba(0, 0, 0, 0.85),
+            0 0 15px rgba(255, 215, 0, 0.9),
+            0 0 30px rgba(255, 215, 0, 0.6),
+            0 0 50px rgba(255, 215, 0, 0.3);
 
     animation: textoEntrar 1.4s ease-out 0.3s both;
 }
@@ -146,7 +171,7 @@ html, body {
 }
 
 /* ================================================================
-   PRINCESA - CENTRADA Y GRANDE
+   ✅ PRINCESA - Centrada y grande
    ================================================================ */
 .princess-cutout {
     position: absolute;
@@ -156,12 +181,12 @@ html, body {
     width: 95vw;
     max-width: 500px;
     height: auto;
-    max-height: 65vh;
+    max-height: 60vh;
     object-fit: contain;
     object-position: bottom center;
     z-index: 3;
     pointer-events: none;
-    filter: drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.6));
 
     animation: princesaEntrar 1.8s cubic-bezier(0.2, 0.9, 0.3, 1.1) 0.6s both;
 }
@@ -170,17 +195,17 @@ html, body {
     0% {
         opacity: 0;
         transform: translateX(-50%) translateY(80px) scale(0.85);
-        filter: blur(8px) drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.5));
+        filter: blur(8px) drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.6));
     }
     100% {
         opacity: 1;
         transform: translateX(-50%) translateY(0) scale(1);
-        filter: blur(0) drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.5));
+        filter: blur(0) drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.6));
     }
 }
 
 /* ================================================================
-   MARIPOSAS - MÁS GRANDES (posicionadas fuera del área del texto)
+   ✅ MARIPOSAS - Con latido de corazón
    ================================================================ */
 .bfly {
     position: absolute;
@@ -188,11 +213,12 @@ html, body {
     width: 100px;
     height: auto;
     z-index: 6;
-    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.75));
+    filter:
+            drop-shadow(0 0 12px rgba(212, 175, 55, 0.9))
+            drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
     will-change: transform, opacity;
 }
 
-/* ---------- 1) MARIPOSAS CON LATIDO DE CORAZÓN ---------- */
 .bfly-palpitando {
     opacity: 0;
     animation:
@@ -251,7 +277,6 @@ html, body {
     }
 }
 
-/* ---------- 2) MARIPOSAS CRUZANDO EN DIAGONAL ---------- */
 .bfly-cruzando {
     opacity: 0;
     animation: cruzarDiagonal 7s ease-in-out infinite;
@@ -276,21 +301,11 @@ html, body {
         opacity: 0;
         transform: translate(0, 0) rotate(0deg) scale(1);
     }
-    10% {
-        opacity: 1;
-    }
-    25% {
-        transform: translate(-20vw, -20vh) rotate(45deg) scale(1.1);
-    }
-    50% {
-        transform: translate(-45vw, -45vh) rotate(90deg) scale(1.15);
-    }
-    75% {
-        transform: translate(-70vw, -70vh) rotate(135deg) scale(1.1);
-    }
-    90% {
-        opacity: 1;
-    }
+    10% { opacity: 1; }
+    25% { transform: translate(-20vw, -20vh) rotate(45deg) scale(1.1); }
+    50% { transform: translate(-45vw, -45vh) rotate(90deg) scale(1.15); }
+    75% { transform: translate(-70vw, -70vh) rotate(135deg) scale(1.1); }
+    90% { opacity: 1; }
     100% {
         opacity: 0;
         transform: translate(-95vw, -95vh) rotate(180deg) scale(1);
@@ -306,9 +321,7 @@ html, body {
         opacity: 0;
         transform: scaleX(-1) translate(0, 0) rotate(0deg) scale(1);
     }
-    10% {
-        opacity: 1;
-    }
+    10% { opacity: 1; }
     25% {
         transform: scaleX(-1) translate(-20vw, -20vh) rotate(45deg) scale(1.1);
     }
@@ -318,9 +331,7 @@ html, body {
     75% {
         transform: scaleX(-1) translate(-70vw, -70vh) rotate(135deg) scale(1.1);
     }
-    90% {
-        opacity: 1;
-    }
+    90% { opacity: 1; }
     100% {
         opacity: 0;
         transform: scaleX(-1) translate(-95vw, -95vh) rotate(180deg) scale(1);
@@ -330,22 +341,21 @@ html, body {
 /* ================================================================
    RESPONSIVE
    ================================================================ */
-
-/* Pantallas pequeñas (iPhone SE) */
 @media (max-height: 700px) {
+    .section {
+        padding-bottom: 80px;
+    }
     .dedication-text {
-        /* ✅ BAJADO también en pantallas pequeñas */
         margin-top: 11vh;
         font-size: clamp(1.1rem, 5vw, 1.4rem);
         max-width: calc(100% - 80px);
         line-height: 1.6;
     }
     .princess-cutout {
-        max-height: 60vh;
+        max-height: 55vh;
         max-width: 400px;
     }
     .flowers-top {
-        /* ✅ Flores grandes también en pantallas pequeñas */
         top: -70px;
         left: -70px;
         width: 85vw;
@@ -367,20 +377,20 @@ html, body {
     }
 }
 
-/* Pantallas grandes (Pro Max, tablets) */
 @media (min-height: 900px) {
+    .section {
+        padding-bottom: 100px;
+    }
     .dedication-text {
-        /* ✅ BAJADO también en pantallas grandes */
         margin-top: 16vh;
         font-size: clamp(1.4rem, 6vw, 2rem);
         max-width: calc(100% - 110px);
     }
     .princess-cutout {
-        max-height: 70vh;
+        max-height: 65vh;
         max-width: 550px;
     }
     .flowers-top {
-        /* ✅ Flores más grandes aún en pantallas grandes */
         top: -90px;
         left: -90px;
         width: 100vw;
@@ -400,15 +410,17 @@ html, body {
     }
 }
 
-/* Modo horizontal (landscape) */
 @media (orientation: landscape) {
+    .section {
+        padding-bottom: 70px;
+    }
     .dedication-text {
         margin-top: 8vh;
         font-size: clamp(1rem, 3.2vw, 1.3rem);
         max-width: calc(100% - 120px);
     }
     .princess-cutout {
-        max-height: 75vh;
+        max-height: 70vh;
         max-width: 350px;
     }
     .flowers-top {
