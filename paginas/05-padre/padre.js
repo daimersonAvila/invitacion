@@ -1,17 +1,12 @@
 /* ================================================================
-   PADRE.JS - Sección "Mis Padres"
+   PADRE.JS - Sección "Mis Padres" + Hermano
    - Al tocar "Siguiente": mariposas cruzan → navega a Detalles
-   - Mariposas grandes que cubren toda la pantalla
-   - Animación lenta y cinematográfica
    ================================================================ */
 
 console.log('🚀 padre.js cargando...');
 
 // ================================================================
 //  CREAR MARIPOSAS DE TRANSICIÓN
-//  - 20 mariposas que cubren toda la pantalla
-//  - Tamaños grandes (90-180px)
-//  - Efecto de oleada continua
 // ================================================================
 function crearMariposasTransicion() {
     let contenedor = document.getElementById('mariposas-transicion');
@@ -41,15 +36,12 @@ function crearMariposasTransicion() {
         }
         mariposa.style.bottom = '-10%';
 
-        // Tamaño grande: entre 90px y 180px
         const tamaño = 90 + Math.random() * 90;
         mariposa.style.width = `${tamaño}px`;
 
-        // Retraso escalonado para efecto de oleada
         const retraso = i * 120;
         mariposa.style.animationDelay = `${retraso}ms`;
 
-        // Duración lenta: entre 2400ms y 3000ms
         const duracion = 2400 + Math.random() * 600;
         mariposa.style.animationDuration = `${duracion}ms`;
 
@@ -60,7 +52,7 @@ function crearMariposasTransicion() {
 }
 
 // ================================================================
-//  NAVEGAR A DETALLES (con doble respaldo)
+//  NAVEGAR A DETALLES
 // ================================================================
 function navegarADetalles() {
     const RUTA = '../07-detalles/detalles.html';
@@ -74,8 +66,6 @@ function navegarADetalles() {
                 console.log('✅ Usando parent.cambiarPagina()');
                 window.parent.cambiarPagina(RUTA);
                 return;
-            } else {
-                console.warn('⚠️ parent.cambiarPagina no existe');
             }
         }
     } catch (e) {
@@ -85,7 +75,6 @@ function navegarADetalles() {
     // Opción 2: postMessage
     try {
         if (window.parent && window.parent !== window) {
-            console.log('📨 Enviando postMessage al padre');
             window.parent.postMessage(
                 { tipo: 'invitacion-nav', url: RUTA, direccion: 'next' },
                 '*'
@@ -97,7 +86,6 @@ function navegarADetalles() {
     }
 
     // Opción 3: Navegar directamente
-    console.log('🔀 Navegando directamente (sin iframe)');
     window.location.href = RUTA;
 }
 
@@ -109,14 +97,13 @@ function activarTransicionMariposas() {
 
     const btnNext = document.querySelector('.nav-next');
     if (!btnNext) {
-        console.warn('⚠️ No se encontró .nav-next, reintentando en 300ms...');
+        console.warn('⚠️ No se encontró .nav-next, reintentando...');
         setTimeout(activarTransicionMariposas, 300);
         return;
     }
 
     console.log('✅ Botón siguiente encontrado');
 
-    // Eliminar listeners viejos (clonando)
     const btnClone = btnNext.cloneNode(true);
     btnNext.parentNode.replaceChild(btnClone, btnNext);
 
@@ -131,30 +118,22 @@ function activarTransicionMariposas() {
 
         console.log('🦋 ¡Click detectado! Iniciando transición...');
 
-        // 1. Mostrar las mariposas
         crearMariposasTransicion();
 
-        // 2. Esperar a que crucen y luego navegar
-        // (Duración total: 3.4s = 2.4s de animación + 1s del último retraso)
         setTimeout(() => {
-            console.log('⏰ Tiempo cumplido, navegando a Detalles...');
+            console.log('⏰ Navegando a Detalles...');
             navegarADetalles();
         }, 3400);
     });
-
-    console.log('🎯 Listener agregado al botón siguiente');
 }
 
-// ================================================================
-//  EJECUTAR AL CARGAR
-// ================================================================
 window.addEventListener('load', () => {
     console.log('📄 Página cargada, activando transición...');
     setTimeout(activarTransicionMariposas, 100);
 });
 
 // ================================================================
-//  INICIALIZAR NAVEGACIÓN NORMAL (para el botón ANTERIOR)
+//  INICIALIZAR NAVEGACIÓN
 // ================================================================
 window.InvitacionNav.init(
     "../04-invitacion/invitacion.html",
