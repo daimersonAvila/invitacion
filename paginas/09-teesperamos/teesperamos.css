@@ -323,10 +323,41 @@ html, body {
     .final-message {
         font-size: clamp(1.1rem, 4.2vw, 1.35rem);
     }
+    /* ================================================================
+    ✅ PRINCESA - Ahora MÁS GRANDE
+    ================================================================ */
     .princess-cutout {
-        bottom: 90px;
-        max-height: 48vh;
-        max-width: 460px;
+        position: absolute;
+        /* ✅ Subida para no chocar con el contador */
+        bottom: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        /* ✅ Antes: 75vw / 380px · Ahora: 95vw / 480px */
+        width: 95vw;
+        max-width: 480px;
+        height: auto;
+        /* ✅ Antes: 42vh · Ahora: 52vh */
+        max-height: 52vh;
+        object-fit: contain;
+        object-position: bottom center;
+        z-index: 4;
+        pointer-events: none;
+        filter: drop-shadow(0 -8px 25px rgba(0, 0, 0, 0.7));
+
+        animation: princesaEntrar 1.8s cubic-bezier(0.2, 0.9, 0.3, 1.1) 1.5s both;
+    }
+
+    @keyframes princesaEntrar {
+        0% {
+            opacity: 0;
+            transform: translateX(-50%) translateY(80px) scale(0.85);
+            filter: blur(10px) drop-shadow(0 -8px 25px rgba(0, 0, 0, 0.7));
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0) scale(1);
+            filter: blur(0) drop-shadow(0 -8px 25px rgba(0, 0, 0, 0.7));
+        }
     }
 }
 

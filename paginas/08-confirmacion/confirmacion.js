@@ -1,49 +1,60 @@
 /* ================================================================
-   CONFIRMACION.JS - Sección "Confirma tu Asistencia"
-   - Envía el formulario por WhatsApp
-   - Muestra un mensaje de agradecimiento elegante
+   CONFIRMACION.JS - Sección "Un Mensaje para Ti"
+   Solo muestra mensajes bonitos rotando cada 3.5 segundos
    ================================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const rsvpForm = document.getElementById("rsvpForm");
+  const mensajeDinamico = document.getElementById("mensajeDinamico");
 
-  // ⚠️ CAMBIA ESTE NÚMERO POR EL TUYO (Código de país + número, sin espacios)
-  const NUMERO_WHATSAPP = "573142739961";
+  // ================================================================
+  //  ✅ LISTA DE MENSAJES BONITOS
+  // ================================================================
+  const MENSAJES = [
+    "Tu presencia hará que este día sea inolvidable ✦",
+    "Será un honor tenerte en mi gran noche",
+    "Tu compañía es el mejor regalo que puedo recibir",
+    "Ven a celebrar conmigo este momento tan especial",
+    "Cada sonrisa tuya hará brillar más mi fiesta",
+    "Te espero para compartir la magia de mis XV años",
+    "Gracias por ser parte de este sueño hecho realidad",
+    "Mi corazón late emocionado por tenerte cerca",
+    "Este día brilla más porque tú estarás aquí",
+    "Eres parte esencial de mi historia, te espero",
+  ];
 
-  rsvpForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+  let indiceMensaje = 0;
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const asistencia = document.getElementById("asistencia").value;
-    const personas = document.getElementById("personas").value;
+  // ================================================================
+  //  CAMBIAR MENSAJE CON ANIMACIÓN
+  // ================================================================
+  function cambiarMensaje() {
+    if (!mensajeDinamico) return;
 
-    if (!nombre || !asistencia) {
-      alert("Por favor completa todos los campos ✦");
-      return;
-    }
+    // Animación de salida
+    mensajeDinamico.style.opacity = '0';
+    mensajeDinamico.style.transform = 'scale(0.85) translateY(-10px)';
 
-    // Armar mensaje de WhatsApp
-    const mensaje =
-        `¡Hola! Confirmo mi asistencia a los XV años de Keidy Julieth 💖%0A%0A` +
-        `*Nombre:* ${nombre}%0A` +
-        `*Asistencia:* ${asistencia}%0A` +
-        `*Personas:* ${personas}`;
+    setTimeout(() => {
+      // Cambiar al siguiente mensaje
+      indiceMensaje = (indiceMensaje + 1) % MENSAJES.length;
+      mensajeDinamico.textContent = MENSAJES[indiceMensaje];
 
-    window.open(
-        `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`,
-        "_blank"
-    );
+      // Animación de entrada
+      mensajeDinamico.style.opacity = '1';
+      mensajeDinamico.style.transform = 'scale(1) translateY(0)';
+    }, 600);
+  }
 
-    // ✅ Reemplazar el formulario por un mensaje elegante
-    rsvpForm.innerHTML = `
-      <div class="gracias-container">
-        <div class="gracias-icon">✦</div>
-        <p class="gracias-titulo">¡Gracias!</p>
-        <p class="gracias-sub">Tu confirmación ha sido enviada</p>
-        <p class="gracias-detalle">Te esperamos con mucho cariño 💖</p>
-      </div>
-    `;
-  });
+  // ================================================================
+  //  INICIAR ROTACIÓN
+  // ================================================================
+  if (mensajeDinamico) {
+    mensajeDinamico.textContent = MENSAJES[0];
+    console.log('💌 Mensajes dinámicos iniciados');
+
+    // Rotar cada 3.5 segundos
+    setInterval(cambiarMensaje, 5500);
+  }
 });
 
 // ================================================================
@@ -53,3 +64,5 @@ window.InvitacionNav.init(
     "../07-detalles/detalles.html",
     "../09-teesperamos/teesperamos.html"
 );
+
+console.log('✅ confirmacion.js cargado');

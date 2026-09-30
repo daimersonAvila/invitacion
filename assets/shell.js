@@ -1,9 +1,9 @@
 // ================================================================
-//  SHELL.JS v3.3 - Música + Navegación + Precarga
-//  + Contador centrado abajo (con animación "sube-contador")
+//  SHELL.JS v3.4 - Música + Navegación + Precarga
+//  + Contador centrado abajo (SIN animaciones, solo ocultar/mostrar)
 // ================================================================
 
-console.log('🟢 SHELL.JS v3.3 CARGADO');
+console.log('🟢 SHELL.JS v3.4 CARGADO');
 
 const musicBtn = document.getElementById('musicBtn');
 const contentFrame = document.getElementById('contentFrame');
@@ -54,24 +54,22 @@ function iniciarMusica() {
 }
 
 // ================================================================
-//  ✅ RESTAURAR EL CONTADOR (cuando se sale de Detalles)
+//  ✅ MOSTRAR / OCULTAR CONTADOR (sin efectos)
 // ================================================================
-function restaurarContador() {
+function mostrarContador() {
   const contador = document.getElementById('countdown-widget');
-  if (!contador) return;
+  if (contador) {
+    contador.style.display = '';
+    console.log('♻️ Contador mostrado abajo');
+  }
+}
 
-  // Quitar cualquier estilo inline que lo haya ocultado
-  contador.style.display = '';
-  contador.style.transition = 'none';
-  contador.style.transform = 'translateX(-50%) translateY(0) scale(1)';
-  contador.style.opacity = '1';
-
-  // Reactivar la transición después de un instante
-  setTimeout(() => {
-    contador.style.transition = '';
-  }, 100);
-
-  console.log('♻️ Contador restaurado abajo');
+function ocultarContador() {
+  const contador = document.getElementById('countdown-widget');
+  if (contador) {
+    contador.style.display = 'none';
+    console.log('🚫 Contador oculto');
+  }
 }
 
 // ================================================================
@@ -113,8 +111,9 @@ function cambiarPagina(ruta) {
   if (!musicaIniciada) iniciarMusica();
   if (!contentFrame) return;
 
-  // ✅ Restaurar el contador si estaba oculto
-  restaurarContador();
+  // ✅ Al cambiar de página, SIEMPRE mostrar el contador
+  // (así se restaura cuando sales de Detalles)
+  mostrarContador();
 
   let rutaFinal = ruta;
   try {
@@ -160,26 +159,10 @@ window.addEventListener('message', (event) => {
     cambiarPagina(event.data.url);
   }
 
-  // ============================================================
-  //  ✅ Mensaje: "sube-contador"
-  //  Anima el contador hacia arriba y lo oculta permanentemente
-  // ============================================================
-  if (event.data.tipo === 'sube-contador') {
-    console.log('⬆️ Animando contador hacia arriba');
-
-    const contador = document.getElementById('countdown-widget');
-    if (contador) {
-      // Fase 1: Animar subida (1.2s)
-      contador.style.transition = 'all 1.2s cubic-bezier(0.55, 0, 0.55, 1)';
-      contador.style.transform = 'translateX(-50%) translateY(-70vh) scale(0.6)';
-      contador.style.opacity = '0';
-
-      // Fase 2: Ocultar permanentemente al terminar
-      setTimeout(() => {
-        contador.style.display = 'none';
-        console.log('👻 Contador oculto permanentemente');
-      }, 1300);
-    }
+  // ✅ Mensaje: ocultar contador (sin efectos)
+  if (event.data.tipo === 'ocultar-contador') {
+    console.log('📨 Mensaje: ocultar contador');
+    ocultarContador();
   }
 });
 
@@ -245,7 +228,7 @@ setTimeout(() => {
 }, 1500);
 
 // ================================================================
-//  ✅ CONTADOR CENTRADO ABAJO (4 elementos separados)
+//  ✅ CONTADOR CENTRADO ABAJO
 //  Fecha del evento: 29 Noviembre 2026 · 2:00 PM (UTC-5 Colombia)
 // ================================================================
 const FECHA_EVENTO = new Date('2026-11-29T14:00:00-05:00').getTime();
@@ -283,4 +266,4 @@ function actualizarContador() {
 actualizarContador();
 setInterval(actualizarContador, 1000);
 
-console.log('✅ SHELL.JS v3.3 LISTO');
+console.log('✅ SHELL.JS v3.4 LISTO');
